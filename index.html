@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Powertrain Assembly & Drive Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>E-Powertrain Assembly & Drive</h1>
+            <div class="game-mode-selector">
+                <button id="assembly-mode" class="mode-btn active">Assembly Phase</button>
+                <button id="drive-mode" class="mode-btn" disabled>Drive Phase</button>
+            </div>
+        </header>
+
+        <!-- Assembly Phase -->
+        <div id="assembly-phase" class="game-phase active">
+            <div class="assembly-container">
+                <div class="component-library">
+                    <h3>Component Library</h3>
+                    <div class="component-category">
+                        <h4>Batteries</h4>
+                        <div class="components" id="batteries"></div>
+                    </div>
+                    <div class="component-category">
+                        <h4>Inverters</h4>
+                        <div class="components" id="inverters"></div>
+                    </div>
+                    <div class="component-category">
+                        <h4>E-Axles</h4>
+                        <div class="components" id="e-axles"></div>
+                    </div>
+                    <div class="component-category">
+                        <h4>Thermal Systems</h4>
+                        <div class="components" id="thermal-systems"></div>
+                    </div>
+                </div>
+                
+                <div class="assembly-area">
+                    <h3>Vehicle Assembly</h3>
+                    <div class="vehicle-chassis">
+                        <div class="drop-zone" id="battery-zone" data-component="battery">
+                            <span>Battery Pack</span>
+                        </div>
+                        <div class="drop-zone" id="inverter-zone" data-component="inverter">
+                            <span>Inverter</span>
+                        </div>
+                        <div class="drop-zone" id="e-axle-zone" data-component="e-axle">
+                            <span>E-Axle</span>
+                        </div>
+                        <div class="drop-zone" id="thermal-zone" data-component="thermal">
+                            <span>Thermal System</span>
+                        </div>
+                    </div>
+                    
+                    <div class="assembly-info">
+                        <h4>Vehicle Specifications</h4>
+                        <div id="vehicle-specs">
+                            <p>Total Weight: <span id="total-weight">0</span> kg</p>
+                            <p>Total Power: <span id="total-power">0</span> kW</p>
+                            <p>Battery Capacity: <span id="battery-capacity">0</span> kWh</p>
+                            <p>Est. Range: <span id="estimated-range">0</span> km</p>
+                        </div>
+                        <button id="start-drive" class="start-btn" disabled>Start Driving</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Driving Phase -->
+        <div id="drive-phase" class="game-phase">
+            <div class="driving-hud">
+                <div class="hud-left">
+                    <div class="metric">
+                        <label>Speed</label>
+                        <span id="speed">0</span> km/h
+                    </div>
+                    <div class="metric">
+                        <label>Distance</label>
+                        <span id="distance">0</span> km
+                    </div>
+                </div>
+                
+                <div class="hud-center">
+                    <div class="battery-indicator">
+                        <div class="battery-container">
+                            <div class="battery-level" id="battery-level"></div>
+                        </div>
+                        <span id="soc">100%</span>
+                    </div>
+                </div>
+                
+                <div class="hud-right">
+                    <div class="metric">
+                        <label>Range</label>
+                        <span id="range">0</span> km
+                    </div>
+                    <div class="metric">
+                        <label>Power</label>
+                        <span id="power-consumption">0</span> kW
+                    </div>
+                </div>
+            </div>
+            
+            <canvas id="game-canvas" width="800" height="400"></canvas>
+            
+            <div class="game-controls">
+                <p>Use ↑↓ arrows to accelerate/brake, ←→ to change lanes</p>
+                <button id="pause-game" class="control-btn">Pause</button>
+                <button id="restart-game" class="control-btn">Restart</button>
+                <button id="back-to-assembly" class="control-btn">Back to Assembly</button>
+            </div>
+        </div>
+
+        <!-- Results Phase -->
+        <div id="results-phase" class="game-phase">
+            <div class="results-container">
+                <h2>Mission Complete!</h2>
+                <div class="performance-summary">
+                    <h3>Performance Summary</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <h4>Efficiency</h4>
+                            <span id="final-efficiency">0%</span>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Distance Traveled</h4>
+                            <span id="final-distance">0 km</span>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Energy Used</h4>
+                            <span id="energy-used">0 kWh</span>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Final SOC</h4>
+                            <span id="final-soc">0%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="educational-tips">
+                        <h4>Tips for Improvement</h4>
+                        <ul id="improvement-tips"></ul>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button id="try-again" class="action-btn">Try Again</button>
+                        <button id="new-assembly" class="action-btn">New Assembly</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="components.js"></script>
+    <script src="game.js"></script>
+    <script src="driving.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
